@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>မောင်ကို စိတ်မဆိုးပါနဲ့ ဝက်ကလေး</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            overflow: hidden;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+            z-index: 10;
+        }
+
+        .gif-container img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #d63384;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: #555;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+        }
+
+        button {
+            padding: 12px 28px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .yes-btn {
+            background-color: #ff4b72;
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 75, 114, 0.4);
+        }
+
+        .yes-btn:hover {
+            transform: scale(1.1);
+            background-color: #e03a5f;
+        }
+
+        .no-btn {
+            background-color: #6c757d;
+            color: white;
+            position: absolute;
+            right: 40px;
+        }
+
+        /* Confetti or Hearts Animation */
+        .heart {
+            position: absolute;
+            color: #ff4b72;
+            font-size: 20px;
+            animation: floatUp 3s linear forwards;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) scale(1.5);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card" id="card">
+        <div class="gif-container">
+            <!-- Pudu Cute Bear GIF -->
+            <img id="display-img" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3poandncWJ6ZHR6Ynk3M2R6NDcxY2Q0b3AwaXR1YnYzaWZ3aWRycyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/L9543L40I4JfG/giphy.gif" alt="Sad Teddy">
+        </div>
+        <h1 id="title">ဝက်ကလေးရေ တောင်းပန်ပါတယ်နော်... ❤️</h1>
+        <p id="message">မောင်ကပဲ အများကြီး မှားသွား ပါတယ်  မောင့်ကို စိတ်မဆိုးတော့ဘဲ ခွင့်လွှတ်ပေးပါနော် </p>
+        
+        <div class="btn-group" id="btn-group">
+            <button class="yes-btn" onclick="acceptApology()"> ဟုတ်ခွင့်လွတ်မယ် ❤️</button>
+            <button class="no-btn" id="no-btn" onmouseover="moveButton()"> ချော့ဦး </button>
+        </div>
+    </div>
+
+    <script>
+        // No ခလုတ်ကို မနှိပ်နိုင်အောင် အဝေးပြေးစေမယ့် Function
+        function moveButton() {
+            const noBtn = document.getElementById('no-btn');
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 50);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 50);
+            
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = `${x}px`;
+            noBtn.style.top = `${y}px`;
+        }
+
+        // Yes ခလုတ်ကို နှိပ်လိုက်ရင် ပေါ်လာမယ့် စာနဲ့ ရုပ်ပုံ အပြောင်းအလဲ
+        function acceptApology() {
+            document.getElementById('display-img').src = 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHI1bmUxeWhqOHdndGNvMTRicTFsdDVpYXg3YmZwdGRyNXZsczQ0bCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MDJ9IbxxvDUQM/giphy.gif';
+            document.getElementById('title').innerText = 'Yayyy! ဝက်ဝက်ကို ချစ်လိုက်တာ ❤️';
+            document.getElementById('message').innerText = 'ငါ့မှာ ဝက်ကလေး ပဲရှိတာမို့ Ego high လဲ မနေနိုင်ဘူး ချစ်တယ်';
+            
+            // ခလုတ်တွေကို ဖျောက်လိုက်မည်
+            document.getElementById('btn-group').style.display = 'none';
+
+            // အသည်းပုံလေးများ မိုးရွာသလို ကျလာစေရန်
+            for (let i = 0; i < 30; i++) {
+                setTimeout(createHeart, i * 100);
+            }
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '100vh';
+            heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
